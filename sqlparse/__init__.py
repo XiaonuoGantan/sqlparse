@@ -46,6 +46,8 @@ def format(sql, **options):
     Returns the formatted SQL statement as string.
     """
     stack = engine.FilterStack()
+    options.setdefault('reindent', True)
+    options.setdefault('indent', 4)
     options = formatter.validate_options(options)
     stack = formatter.build_filter_stack(stack, options)
     stack.postprocess.append(filters.SerializerUnicode())
